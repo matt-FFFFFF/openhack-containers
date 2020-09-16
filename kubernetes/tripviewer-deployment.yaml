@@ -13,10 +13,16 @@ spec:
     metadata:
       labels:
         app: tripviewer
+        version: '1.0'
     spec:
       containers:
       - name: tripviewer
         image: registrycyb9188.azurecr.io/tripinsights/tripviewer:1.0
+        env:
+          - name: TRIPS_API_ENDPOINT
+            value: http://trips-service.default.svc.cluster.local:3000
+          - name: USERPROFILE_API_ENDPOINT
+            value: http://userprofile-service.default.svc.cluster.local:80
         resources:
             limits:
               cpu: 250m
