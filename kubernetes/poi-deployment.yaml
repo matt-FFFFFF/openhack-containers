@@ -16,9 +16,6 @@ spec:
         version: '1.0'
     spec:
       volumes:
-        - name: configmap
-          configMap:
-            name: tripinsights-config
         - name: secrets-store-inline
           csi:
             driver: secrets-store.csi.k8s.io
@@ -37,10 +34,7 @@ spec:
         ports:
         - containerPort: 80
         volumeMounts:
-          - mountPath: "/secrets" # this will be the configmap
-            name: configmap
-            readOnly: true
-          - mountPath: "/secrets/SQL_PASSWORD" # this will be the configmap
+          - mountPath: "/secrets" # Azure KeyVault
             name: secrets-store-inline
             readOnly: true
         livenessProbe:

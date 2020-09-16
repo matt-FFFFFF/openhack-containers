@@ -1,0 +1,55 @@
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: web-user-full-access-web
+  namespace: web
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: web-users-full-access
+subjects:
+- kind: Group
+  namespace: web
+  name: ab601c88-73dd-4e9b-948c-e5ae37fac626
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: web-user-read-access-api
+  namespace: api
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: api-users-read-access
+subjects:
+- kind: Group
+  namespace: api
+  name: ab601c88-73dd-4e9b-948c-e5ae37fac626
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: api-user-full-access-api
+  namespace: api
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: api-users-full-access
+subjects:
+- kind: Group
+  namespace: api
+  name: fd3be76a-2e8c-47b3-a7de-b39ae6af3431
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: api-user-read-access-web
+  namespace: web
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: web-users-read-access
+subjects:
+- kind: Group
+  namespace: web
+  name: fd3be76a-2e8c-47b3-a7de-b39ae6af3431
