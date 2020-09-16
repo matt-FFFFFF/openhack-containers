@@ -14,7 +14,7 @@ spec:
       labels:
         app: userprofile
         version: '1.0'
-      spec:
+    spec:
       volumes:
         - name: secrets-store-inline
           csi:
