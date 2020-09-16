@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: trips-service
+spec:
+  ports:
+  - port: 3000
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: trips
+    version: '1.0'
