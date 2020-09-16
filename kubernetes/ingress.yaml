@@ -1,34 +1,89 @@
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: hello-world-ingress
+  name: tripinsights-ingress
   namespace: ingress-basic
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    #nginx.ingress.kubernetes.io/rewrite-target: /$1
 spec:
   rules:
   - http:
       paths:
       - backend:
-          serviceName: poi-service
-          servicePort: 80
+          serviceName: poi-ingress-service
+          servicePort: 8080
         path: /api/poi(/|$)(.*)
       - backend:
-          serviceName: trips-service
-          servicePort: 80
+          serviceName: trips-ingress-service
+          servicePort: 3000
         path: /api/trips(/|$)(.*)
       - backend:
-          serviceName: user-java-service
-          servicePort: 80
+          serviceName: user-java-ingress-service
+          servicePort: 8080
         path: /api/user-java(/|$)(.*)
       - backend:
-          serviceName: userprofile-service
+          serviceName: userprofile-ingress-service
           servicePort: 80
-        path: /api/userprofile(/|$)(.*)
+        path: /api/user(/|$)(.*)
       - backend:
-          serviceName: tripviewer-service
+          serviceName: tripviewer-ingress-service
           servicePort: 80
         path: /(.*)
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: tripviewer-ingress-service
+  namespace: ingress-basic
+spec:
+  type: ExternalName
+  externalName: tripviewer-service.web.svc.cluster.local
+  ports:
+  - port: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: trips-ingress-service
+  namespace: ingress-basic
+spec:
+  type: ExternalName
+  externalName: trips-service.api.svc.cluster.local
+  ports:
+  - port: 3000
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: userprofile-ingress-service
+  namespace: ingress-basic
+spec:
+  type: ExternalName
+  externalName: userprofile-service.api.svc.cluster.local
+  ports:
+  - port: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: user-java-ingress-service
+  namespace: ingress-basic
+spec:
+  type: ExternalName
+  externalName: user-java-service.api.svc.cluster.local
+  ports:
+  - port: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: poi-ingress-service
+  namespace: ingress-basic
+spec:
+  type: ExternalName
+  externalName: poi-service.api.svc.cluster.local
+  ports:
+  - port: 8080
