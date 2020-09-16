@@ -22,8 +22,8 @@ spec:
             readOnly: true
             volumeAttributes:
               secretProviderClass: "azure-kvname"
-            nodePublishSecretRef:                       # Only required when using service principal mode
-              name: secrets-store-creds                 # Only required when using service principal mode                        
+#            nodePublishSecretRef:                       # Only required when using service principal mode
+#              name: secrets-store-creds                 # Only required when using service principal mode                        
       containers:
       - name: poi
         image: registrycyb9188.azurecr.io/tripinsights/poi:1.0

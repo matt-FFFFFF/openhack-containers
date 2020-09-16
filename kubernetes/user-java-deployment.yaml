@@ -22,8 +22,8 @@ spec:
             readOnly: true
             volumeAttributes:
               secretProviderClass: "azure-kvname"
-            nodePublishSecretRef:                       # Only required when using service principal mode
-              name: secrets-store-creds              
+#            nodePublishSecretRef:                       # Only required when using service principal mode
+#              name: secrets-store-creds              
       containers:
       - name: user-java
         image: registrycyb9188.azurecr.io/tripinsights/user-java:1.0

@@ -20,8 +20,8 @@ spec:
             readOnly: true
             volumeAttributes:
               secretProviderClass: "azure-kvname"
-            nodePublishSecretRef:                       # Only required when using service principal mode
-              name: secrets-store-creds     
+#            nodePublishSecretRef:                       # Only required when using service principal mode
+#              name: secrets-store-creds     
       containers:
       - name: trips
         image: registrycyb9188.azurecr.io/tripinsights/trips:1.0 # IMPORTANT: update with your own repository
