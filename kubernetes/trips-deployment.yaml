@@ -11,13 +11,21 @@ spec:
     metadata:
       labels:
         app: trips # the label for the pods and the deployments
-    spec:
+    spec:    
+      volumes:
+        - name: configmap
+          configMap:
+            name: tripinsights-config    
       containers:
       - name: trips
         image: registrycyb9188.azurecr.io/tripinsights/trips:1.0 # IMPORTANT: update with your own repository
         imagePullPolicy: Always
         ports:
         - containerPort: 80 # the application listens to this port
+        volumeMounts:
+          - mountPath: "/secrets" # this will be the configmap
+            name: configmap
+            readOnly: true        
         resources:
           requests: # minimum resources required
             cpu: 250m
