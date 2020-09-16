@@ -4,9 +4,9 @@ metadata:
   name: poi-service
 spec:
   ports:
-  - port: 80
+  - port: 8080
     protocol: TCP
     targetPort: 80
   selector:
-    app: poi-deployment
+    app: poi
     version: '1.0'
