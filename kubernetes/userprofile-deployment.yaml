@@ -13,6 +13,7 @@ spec:
     metadata:
       labels:
         app: userprofile
+        version: '1.0'
     spec:
       volumes:
         - name: configmap
