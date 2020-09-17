@@ -17,14 +17,14 @@ spec:
     spec:
       containers:
       - name: tripviewer
-        image: registrycyb9188.azurecr.io/tripinsights/tripviewer:1.0
+        image: registrycyb9188.azurecr.io/tripviewer2:1.0
         env:
           - name: TRIPS_API_ENDPOINT
             value: http://trips-service.api.svc.cluster.local:3000
           - name: USERPROFILE_API_ENDPOINT
             value: http://userprofile-service.api.svc.cluster.local:80
           - name: WCF_ENDPOINT
-            value: http://wcf-service.default.svc.cluster.local:80
+            value: http://wcf-service.default.svc.cluster.local:801
         resources:
             limits:
               cpu: 250m
