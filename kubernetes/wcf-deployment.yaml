@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wcf-deployment
+  labels:
+    app: wcf
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: wcf
+  template:
+    metadata:
+      labels:
+        app: wcf
+        version: '1.0'
+    spec:                 
+      containers:
+      - name: wcf
+        image: registrycyb9188.azurecr.io/wcfservice:1.0
+        resources:
+            limits:
+              cpu: 1000m
+              memory: 2048Mi
+        ports:
+        - containerPort: 80
+      nodeSelector:
+        kubernetes.io/os: windows
+      tolerations:
+      - key: windows
+        operator: "Exists"
+        effect: NoExecute
+        
